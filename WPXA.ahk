@@ -1436,14 +1436,14 @@ WPXA_TileLast2Windows() {
     if (tileOrientation=0)
     {
         tileOrientation := 1
-        WPXA_Move(-1,0,0.65,1.0, "A")
-        WPXA_Move(+1,0,0.36,1.0, "P")
+        WPXA_Move(-1,0,0.67,1.0, "A")
+        WPXA_Move(+1,0,0.34,1.0, "P")
     }
     else
     {
         tileOrientation := 0
-        WPXA_Move(0,-1, 1.0, 0.65, "A")
-        WPXA_Move(0, 1, 1.0, 0.36, "P")
+        WPXA_Move(0,-1, 1.0, 0.67, "A")
+        WPXA_Move(0, 1, 1.0, 0.34, "P")
     }
 }
 
