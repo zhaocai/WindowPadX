@@ -12,6 +12,7 @@ Introduction
 
 Features
 --------
+
 - Possible actions to be configured on hotkeys
     - Window actions
       - Multi-Monitor
@@ -24,13 +25,14 @@ Features
           - WPXA_TopToggle: Toogles "AlwaysOnTop" for given window
           - WPXA_RollToggle: Toggles "Roll/Unroll" for given window
           - WPXA_Move: move and resize window based on a "pad" concept.
-          - WPXA_TileLast2Windows: Tile active and last window
+          - WPXA_TileLast2WindowsL: Tile active and last window; Focus on Left
+          - WPXA_TileLast2WindowsR: Tile active and last window; Focus on Right
     - Mouse actions
       - Multi-Monitor
           - WPXA_MoveMouseToMonitor: Moves mouse to center of given monitor
           - WPXA_ClipCursorToCurrentMonitorToggle: Toogles clipping mouse to current monitor
           - WPXA_ClipCursorToMonitor: Clips (Restricts) mouse to given monitor
       - General
-          - WPXA_MouseLocator: Easy find the mouse 
+          - WPXA_MouseLocator: Easy find the mouse
 
-For more details see http://hoppfrosch.github.com/WindowPadX/files/WindowPadX-ahk.html
+For more details see <http://hoppfrosch.github.com/WindowPadX/files/WindowPadX-ahk.html>

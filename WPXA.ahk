@@ -15,7 +15,7 @@
 		ShinyWong - for his *GetMonitorIndexFromWindow* function (http://www.autohotkey.com/forum/viewtopic.php?p=462080#462080) - used in <wp_GetMonitorFromWindow>
 		Skrommel - for his *MouseMark* function (http://www.donationcoder.com/Software/Skrommel/MouseMark/MouseMark.ahk) - used in <WPXA_MouseLocator>
 		x97animal - for his *clipCursor* Function (http://www.autohotkey.com/forum/viewtopic.php?p=409537#409537) - used in <wp_ClipCursor>
-        ipstone today - for his initial implementation (http://www.autohotkey.com/forum/viewtopic.php?p=521482#521482) for <WPXA_TileLast2Windows>
+        ipstone today - for his initial implementation (http://www.autohotkey.com/forum/viewtopic.php?p=521482#521482) for <WPXA_TileLast2WindowsL>
         Sean - for his *WinTrayMin* functionality (http://http://www.autohotkey.com/community/viewtopic.php?f=2&t=33263) - used in <wp_WinTrayMin>
         gwarble - for his great *Notify* function (http://www.autohotkey.com/community/viewtopic.php?f=2&t=48668)
 
@@ -29,7 +29,7 @@
                  {+] <WPXA_TrayMinWindow>: Mininmize a window to a tray icon (see <wp_TrayMin>)
         0.1.10 - [+] <wp_GetMonitorFromMouse>: Determines monitor from current mouseposition.
                  [*] <WPXA_MinimizeWindowsOnMonitor>: added minimization of all windows on screen where mouse is.
-        0.1.9 - [+] <WPXA_TileLast2Windows>: Tile active and last window (see: http://www.autohotkey.com/forum/viewtopic.php?p=521482#521482 - thanks to ipstone today).
+        0.1.9 - [+] <WPXA_TileLast2WindowsL>: Tile active and last window (see: http://www.autohotkey.com/forum/viewtopic.php?p=521482#521482 - thanks to ipstone today).
         0.1.8 - [*] <WPXA_MaximizeToggle>: Bugfix to actually toggle Maximization  (see: http://www.autohotkey.com/forum/post-508122.html#508122 - thanks to sjkeegs).
         0.1.7 - [+] <WPXA_RollToggle>: Toggles Roll/Unroll State of window.
                 [+] <wp_RollWindow>: Rolls up a window to its titlebar.
@@ -392,7 +392,7 @@ wp_Restore() {
     WinGet, id, list, , , Program Manager
     Loop, %id%
     {
-        ; Aktionen rückhängig ...
+        ; Aktionen rï¿½ckhï¿½ngig ...
         hwnd := id%A_Index%
         WinGetTitle, WinTitle, ahk_id %hwnd%
 
@@ -1424,14 +1424,14 @@ WPXA_RollToggle(WinTitle) {
 
 /*
 ===============================================================================
-Function:   WPXA_TileLast2Windows
-    Tile active and last window
+Function:   WPXA_TileLast2WindowsL
+    Tile active and last window, Focus on Left.
 
 Author(s):
     20120316 - ipstone today - Initial (http://www.autohotkey.com/forum/viewtopic.php?p=521482#521482)
 ===============================================================================
 */
-WPXA_TileLast2Windows() {
+WPXA_TileLast2WindowsL() {
     static tileOrientation := 0
     if (tileOrientation=0)
     {
@@ -1444,6 +1444,28 @@ WPXA_TileLast2Windows() {
         tileOrientation := 0
         WPXA_Move(0,-1, 1.0, 0.67, "A")
         WPXA_Move(0, 1, 1.0, 0.34, "P")
+    }
+}
+
+/*
+===============================================================================
+Function:   WPXA_TileLast2WindowsR
+    Tile active and last window, Focus on Right.
+===============================================================================
+*/
+WPXA_TileLast2WindowsR() {
+    static tileOrientation := 0
+    if (tileOrientation=0)
+    {
+        tileOrientation := 1
+        WPXA_Move(+1,0,0.67,1.0, "A")
+        WPXA_Move(-1,0,0.34,1.0, "P")
+    }
+    else
+    {
+        tileOrientation := 0
+        WPXA_Move(0,+1, 1.0, 0.67, "A")
+        WPXA_Move(0,-1, 1.0, 0.34, "P")
     }
 }
 

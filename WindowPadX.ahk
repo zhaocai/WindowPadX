@@ -24,7 +24,7 @@ Version History:
         [+] WPXA.ahk v0.1.10: <wp_GetMonitorFromMouse>: Determine monitor where mouse is
         [*] WPXA.ahk v0.1.10: <WPXA_MinimizeWindowsOnMonitor>: Minimize windows on screen where mouse is
     1.2.0 - 19.Mar.2012 Hoppfrosch
-        [+] WPXA.ahk v0.1.9: <WPXA_TileLast2Windows>: Tile active and last window (Credits: ipstone today (http://www.autohotkey.com/forum/viewtopic.php?p=521482#521482))
+        [+] WPXA.ahk v0.1.9: <WPXA_TileLast2WindowsL>: Tile active and last window (Credits: ipstone today (http://www.autohotkey.com/forum/viewtopic.php?p=521482#521482))
     1.1.1 - 26.Jan.2012 Hoppfrosch
         [*] WPXA.ahk v0.1.8: <WPXA_MaximizeToggle>: Bugfix to actually toggle Maximization
     1.1.0 - 13.Jan.2012 Hoppfrosch
@@ -39,7 +39,7 @@ Version History:
 
 --------------------------------------------------------------------------------------
 Ideensammlung:
-* Transparenz für Fenster
+* Transparenz fï¿½r Fenster
 * Overlay-Icon in Taskbar, um anzuzeigen auf welchem Screen sich das Fenster befindet ... (Funktion aus ITaskBar von maul.esel). Dies sollte bei verlassen des Programmes auch wieder entfernt werden.
   Hinweise:
   * http://www.autohotkey.com/forum/viewtopic.php?t=74314
