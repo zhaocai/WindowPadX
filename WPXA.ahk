@@ -64,8 +64,9 @@ Author(s):
     20110713 - hoppfrosch - Original
 ===============================================================================
 */
-
-#include %A_ScriptDir%/WinGetPosEx.ahk
+#Include %A_LineFile%\..
+#include WinGetPosEx.ahk
+#include _inc\Notify.ahk
 
 WPXA_version()
 {
@@ -1061,9 +1062,9 @@ WPXA_Move(sideX, sideY, widthFactor, heightFactor, winTitle)
         widthFactor := sideX ? 0.5 : 1.0
     if heightFactor is not number
         heightFactor := sideY ? 0.5 : 1.0
-    
+
     WinGetPosEx(hwnd, x, y, w, h, Offset_Left, Offset_Top, Offset_Right, Offset_Bottom)
-    
+
     if wp_IsWhereWePutIt(hwnd, x, y, w, h)
     {   ; Check if user wants to restore.
         if SubStr(sideX,1,1) = "R"
@@ -1553,4 +1554,3 @@ WM_SHELLHOOKMESSAGE(wParam, lParam, nMsg)
 	Return	0
 }
 
-#include %A_ScriptDir%\_inc\Notify.ahk
