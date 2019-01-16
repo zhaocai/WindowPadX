@@ -56,6 +56,15 @@ Ideensammlung:
 
 Version := "1.2.2"
 
+; Custom .ini Path
+Param1 = %1%
+If (InStr(Param1, ".ini")) 
+{
+    WINDOWPADX_INI_PATH := Param1
+    gosub WindowPadXInit
+    return
+}
+
 if 0 > 0
 {
     ; Command-line mode: interpret each arg as a pseudo-command.
@@ -74,6 +83,7 @@ if 0 > 0
 
 OnExit, TrayExit
 
+; Load options and Gather exclusions.
 WindowPadXInit:
     ; If this script is #included in another script, this section may not be
     ; auto-executed.  In that case, the following should be called manually:
@@ -86,37 +96,8 @@ WindowPadX_Init(IniPath="")
     ;
     ; Init icons and tray menu.
     ;
-    if A_IsCompiled  ; Load icons from my custom WindowPadX.exe.
-    {
-        ; Default icon is 32x32, so doesn't look good in the tray.
-        Menu, Tray, Icon, %A_ScriptFullPath%, 2
-    }
-    else if (A_LineFile = A_ScriptFullPath)
-    {   ; Set the tray icon, but only if not included in some other script.
-        wp_SetTrayIcon(true)
-        ; Use OnMessage to catch "Suspend Hotkeys" or "Pause Script"
-        ; so the "disabled" icon can be used.
-        OnMessage(0x111, "WM_COMMAND")
-    }
-        
-    Menu, Tray, NoStandard
-    Menu, Tray, MainWindow
-    Menu, Tray, Add, &Debug, TrayDebug
-    ifExist, %A_ScriptDir%\WindowPadX.html
-    {
-        Menu, Tray, Add, &Help, TrayHelp
-        Menu, Tray, Add
-    }
-    Menu, Tray, Add, &Reload, TrayReload
-    if !A_IsCompiled
-    {
-        Menu, Tray, Add, &Edit Source, TrayEdit
-    }
-    Menu, Tray, Add, Edit &Configuration, TrayEditConfig
-    Menu, Tray, Add
-    Menu, Tray, Add, &Suspend, TraySuspend
-    Menu, Tray, Add, E&xit, TrayExit
-    Menu, Tray, Default, &Debug    
+    wp_SetupTray()
+   
     ;
     ; Load settings.
     ;
@@ -460,6 +441,45 @@ hp_ExecuteHotkeyWithParams:
 return
 }
 
+;
+; Tray Menu
+;
+;
+
+wp_SetupTray() 
+{
+    if A_IsCompiled  ; Load icons from my custom WindowPadX.exe.
+    {
+        ; Default icon is 32x32, so doesn't look good in the tray.
+        Menu, Tray, Icon, %A_ScriptFullPath%, 2
+    }
+    else if (A_LineFile = A_ScriptFullPath)
+    {   ; Set the tray icon, but only if not included in some other script.
+        wp_SetTrayIcon(true)
+        ; Use OnMessage to catch "Suspend Hotkeys" or "Pause Script"
+        ; so the "disabled" icon can be used.
+        OnMessage(0x111, "WM_COMMAND")
+    }
+        
+    Menu, Tray, NoStandard
+    Menu, Tray, MainWindow
+    Menu, Tray, Add, &Debug, TrayDebug
+    ifExist, %A_ScriptDir%\WindowPadX.html
+    {
+        Menu, Tray, Add, &Help, TrayHelp
+        Menu, Tray, Add
+    }
+    Menu, Tray, Add, &Reload, TrayReload
+    if !A_IsCompiled
+    {
+        Menu, Tray, Add, &Edit Source, TrayEdit
+    }
+    Menu, Tray, Add, Edit &Configuration, TrayEditConfig
+    Menu, Tray, Add
+    Menu, Tray, Add, &Suspend, TraySuspend
+    Menu, Tray, Add, E&xit, TrayExit
+    Menu, Tray, Default, &Debug 
+}
 
 ;
 ; Tray Icon Override:

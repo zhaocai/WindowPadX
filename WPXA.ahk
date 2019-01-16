@@ -64,6 +64,9 @@ Author(s):
     20110713 - hoppfrosch - Original
 ===============================================================================
 */
+
+#include %A_ScriptDir%/WinGetPosEx.ahk
+
 WPXA_version()
 {
     Global Version
@@ -1058,9 +1061,9 @@ WPXA_Move(sideX, sideY, widthFactor, heightFactor, winTitle)
         widthFactor := sideX ? 0.5 : 1.0
     if heightFactor is not number
         heightFactor := sideY ? 0.5 : 1.0
-
-    WinGetPos, x, y, w, h
-
+    
+    WinGetPosEx(hwnd, x, y, w, h, Offset_Left, Offset_Top, Offset_Right, Offset_Bottom)
+    
     if wp_IsWhereWePutIt(hwnd, x, y, w, h)
     {   ; Check if user wants to restore.
         if SubStr(sideX,1,1) = "R"
@@ -1162,6 +1165,10 @@ WPXA_Move(sideX, sideY, widthFactor, heightFactor, winTitle)
     if (is_resizable := wp_IsResizable())
     {
         ; Move and resize.
+        newx := newx - Offset_Left
+        newy := newy - Offset_Top
+        neww := neww + Offset_Left + Offset_Right
+        newh := newh + Offset_Top + Offset_Bottom
         WinMove,,, newx, newy, neww, newh
 
         ; Since some windows might be resizable but have restrictions,
